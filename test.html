@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>JS Cookie</title>
+  <script type="text/javascript">
+  ;(function(e){
+   e.addEventListener('DOMContentLoaded',function(){
+   
+    var dil = document.querySelectorAll('.dil-buton');
+    Array.from(dil).map((buton) => {
+     buton.addEventListener('click',(e) => {
+      var secili = e.currentTarget.dataset.dil;
+      var cookieTime = e.currentTarget.dataset.expire;
+       cookieTime *= 60*60*24;
+      var now = new Date();
+      var time = now.getTime();
+      var expireTime = time + cookieTime;
+      now.setTime(expireTime);
+      document.cookie = 'dil='+secili+';expires='+now.toGMTString()+';path=/';
+    location.reload();
+     });
+    });
+    
+   });
+  })(document);
+  </script>
+</head>
+<body>
+<input type="button" value="TR" data-expire="30" class="dil-buton" data-dil="tr" />
+<input type="button" data-expire="30" value="EN" class="dil-buton" data-dil="en" />
+<br/>
+</body>
+</html>
